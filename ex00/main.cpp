@@ -59,7 +59,7 @@ void FormatIsOk(std::string date, std::string value)
 			return ;
 		}
 		BitcoinExchange btc(date, valueInt);
-		
+
 	}
 }
 
@@ -67,7 +67,7 @@ void BitcoinExchangeStart(const std::string& file)
 {
 	std::ifstream fileOpen(file.c_str());
 	std::string line, value, date;
-	char delimiter = '|';
+	char delimiter = ',';
 
 	if (!fileOpen.is_open())
 		throw FileNotFound();
