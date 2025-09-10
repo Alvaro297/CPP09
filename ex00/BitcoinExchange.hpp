@@ -18,8 +18,11 @@ private:
 	void FormatIsOk(std::string date, std::string value);
 	void CalcInput(std::string date, double value);
 public:
-	BitcoinExchange(std::string file);
+	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange& other);
+	BitcoinExchange& operator=(const BitcoinExchange& other);
 	~BitcoinExchange();
+	BitcoinExchange(std::string file);
 
 	void LoadDataInMap(const std::string& fileData);
 	void BitcoinExchangeStart(const std::string& file);

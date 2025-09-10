@@ -1,5 +1,19 @@
 #include "BitcoinExchange.hpp"
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
+	this->btc = other.btc;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
+	if (this != &other) {
+		this->btc = other.btc;
+	}
+	return *this;
+}
+
+BitcoinExchange::~BitcoinExchange() {}
+#include "BitcoinExchange.hpp"
+
 bool BitcoinExchange::dateIsCorrect(std::string date)
 {
 	std::string yearStr;
