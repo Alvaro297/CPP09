@@ -1,15 +1,5 @@
 #include "PMerge.hpp"
 
-void	parseString(std::string argString, PMerge &pushSwapMergue)
-{
-	std::stringstream lineStream(argString);
-	std::string nmbr;
-
-	while (getline(lineStream, nmbr, ' '))
-		if (!nmbr.empty())
-			convertToInt(nmbr, pushSwapMergue);
-}
-
 void	convertToInt(std::string argString, PMerge &pushSwapMergue)
 {
 	long	nmbr;
@@ -20,10 +10,20 @@ void	convertToInt(std::string argString, PMerge &pushSwapMergue)
 		if (!std::isdigit(argString[i]))
 			throw NotValidArgument();
 	nmbr = std::atol(argString.c_str());
-	if (nmbr < 0 || nmbr > INT32_MAX)
+	if (nmbr < 0 || nmbr > INT_MAX)
 		throw NotValidArgument();
-	pushSwapMergue.addToDeque(nmbr);
-	pushSwapMergue.addToVector(nmbr);
+	pushSwapMergue.addToDeque(static_cast<int>(nmbr));
+	pushSwapMergue.addToVector(static_cast<int>(nmbr));
+}
+
+void	parseString(std::string argString, PMerge &pushSwapMergue)
+{
+	std::stringstream lineStream(argString);
+	std::string nmbr;
+
+	while (getline(lineStream, nmbr, ' '))
+		if (!nmbr.empty())
+			convertToInt(nmbr, pushSwapMergue);
 }
 
 void parsingArguments(char **argv)
@@ -40,7 +40,8 @@ void parsingArguments(char **argv)
 			convertToInt(argString, pushSwapMergue);
 		i++;
 	}
-	
+	pushSwapMergue.sortDeque();
+	pushSwapMergue.sortVector();
 }
 
 
